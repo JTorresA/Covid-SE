@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SbsSW.SwiPlCs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace Covid_SE
         public Form1()
         {
             InitializeComponent();
+            prueba();
+        }
+
+        public void prueba()
+        {
+            PlQuery q = new PlQuery("member(A,[a,b,c])");
+            foreach (PlTermV s in q.Solutions)
+                Console.WriteLine(s[0].ToString());
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using SbsSW.SwiPlCs;
+﻿// directiva necesaria para utilizar libreria de prolog
+using SbsSW.SwiPlCs;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,19 +13,58 @@ using System.Windows.Forms;
 
 namespace Covid_SE
 {
-    public partial class Form1 : Form
+    public partial class Covid_SE : Form
     {
-        public Form1()
+        public Covid_SE()
         {
             InitializeComponent();
-            prueba();
         }
 
-        public void prueba()
+        /// <summary>
+        /// Inicializa Prolog y el archivo para consultas.
+        /// Cambiar el archivo tareas.pl por el de diagnóstico.
+        /// </summary>
+        private void Covid_SE_Load(object sender, EventArgs e)
         {
-            PlQuery q = new PlQuery("member(A,[a,b,c])");
-            foreach (PlTermV s in q.Solutions)
-                Console.WriteLine(s[0].ToString());
+            // es necesario instalar la version 32 bits, este es el "Path"
+            Environment.SetEnvironmentVariable("SWI_HOME_DIR", @"‪C:\\Program Files (x86)\\swipl");
+
+            // toma los parámetros para quitar los mensajes de advertencia y otras cosillas
+            string[] p = { "-q", "-f", @"tareas.pl" };
+            PlEngine.Initialize(p);
+        }
+
+        /// <summary>
+        /// Realiza las consultas al presionar consultar.
+        /// </summary>
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            // toma el valor del textbox
+            string valor = tbxInput.Text;
+
+            // limpia el listbox cada vez que se da clic
+            lbxOutput.Items.Clear();
+
+            // cambiar archivo por la base de conocimientos con el mismo nombre 
+            // del archivo .pl pero con extensión .bd
+            PlQuery query = new PlQuery("cargar('tareas.bd')");
+            query.NextSolution();
+
+            if (ckbxFactorial.Checked == true)
+            {
+                PlQuery consulta1 = new PlQuery("factorial(" + valor + ",F)");
+                foreach (PlQueryVariables z in consulta1.SolutionVariables)
+                    lbxOutput.Items.Add(z["F"].ToString());
+            }
+            else if (ckbxMCD.Checked == true)
+            {
+                PlQuery consulta2 = new PlQuery("mcd("+ valor +", 12, Num)");
+                foreach (PlQueryVariables z in consulta2.SolutionVariables)
+                    lbxOutput.Items.Add(z["Num"].ToString());
+            }
+
+            // limpia el engine para que no haya error.
+            PlEngine.PlCleanup();
         }
     }
 }

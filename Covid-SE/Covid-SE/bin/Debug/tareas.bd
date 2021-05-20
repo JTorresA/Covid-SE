@@ -1,187 +1,61 @@
-/*gender(manuel, masculino).
-gender(maria, femenino).
-spouse(juan, juana).
-parent(juan, juanello).
-parent(juan, juanella).
-sibling(juanello, juanella).
-sibling(manuel, pepe).
-sibling(manuel, juan).
-sibling(maria, juan).
-uncle(Person1, Person2) :-
-    sibling(Person1, Person3),
-	parent(Person3, Person2).*/
-	
-/* - En prolog, crear hechos y reglas 
-para definir las relaciones familiares, 
-estas deben incluir Papa, Mama, Hijos, 
-Hermanos, con Hechos y con Reglas Abuelos, 
-Primos, Sobrinos y Tíos. */
 
-padre(josue,josuecito).
-padre(samuel,samuelito).
+% INICIA COINCIDENCIAS PARA SINTOMAS DE ALERGIAS
+sintomas(P1,_,P3,P4,P5,_,P7,P8,_,_,_,P12,P13,P14,P15,P16,P17,P18,"Alergias") :-
+	P1='no', P3='no', P4='no', P5='si',	P7='no', P8='no',
+	P12='no', P13='no', P14='no', P15='no', P16='si', P17='si', P18='si'.
 
-padre(manuel,josue).
-padre(manuel,samuel).
+sintomas(P1,_,P3,P4,P5,_,P7,P8,_,_,_,P12,P13,P14,P15,P16,P17,P18,"Alergias") :-
+	P1='no', P3='no', P4='no', P5='si',	P7='no', P8='no',
+	P12='no', P13='no', P14='no', P15='no', (P16='si'; P17='si'; P18='si').
 
-padre(teodoro,chito).
-padre(teodoro,manuel).
+sintomas(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,"Alergias") :-
+    P1='no', P3='no', P4='no', P5='si',	P7='no', P8='no',
+	P12='no', P13='no', P14='no', P15='no',
+	((P2='si'; P6='si');
+    (P9='si'; P10='si'; P11='si');    
+    (P16='si'; P17='si'; P18='si')).
 
-padre(chito,minerva).
-padre(chito,teodorito).
+sintomas(_,_,_,_,_,_,_,_,_,_,_,_,_,_,P15,P16,P17,P18,"Alergias") :-
+    P15='no', (P16='si'; P17='si'; P18='si').	
+% TERMINA COINCIDENCIAS PARA SINTOMAS DE ALERGIAS	
 
-padre(juan,guadalupe).
-padre(juan,pepe).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% INICIA COINCIDENCIAS PARA SINTOMAS DE RESFRIADO
+sintomas(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,"Resfriado") :-
+    P1='no', P3='si', P4='no', P5='no',	P6='no', P7='no', P8='no', P9='no',
+	P10='no', P11='no', P12='no', P13='no', P15='no';
+	(P2='si';P14='si');    
+    (P16='si'; P17='si'; P18='si').
+% TERMINA COINCIDENCIAS PARA SINTOMAS DE RESFRIADO
 
-madre(guadalupe,josue).
-madre(guadalupe,samuel).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-madre(rosa,manuel).
-madre(rosa,chito).
+% INICIA COINCIDENCIAS PARA SINTOMAS DE INFLUENZA
+sintomas(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,"Influenza") :-
+	P5='no', P9='no', P10='no',
+	(P1='si'; P2='si'; P3='si'; P4='si'; P6='si'; P11='si'; P12='si'; P13='si'; P14='si'; P15='si');
+    (P7='si'; P8='si'; P16='si'; P17='si'; P18='si').
+% TERMINA COINCIDENCIAS PARA SINTOMAS DE INFLUENZA
 
-madre(aurora,minerva).
-madre(aurora,teodorito).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-madre(rebeca,guadalupe).
-madre(rebeca,pepe).
+% INICIA COINCIDENCIAS PARA SINTOMAS DE COVID
 
+sintomas(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,"Covid-19") :-
+	P17='no', P18='no',
+	(P1='si'; P2='si'; P4='si'; P5='si'; P7='si'; P8='si'; P11='si'; P12='si'; P13='si'; P14='si');
+    (P3='si'; P6='si'; P9='si'; P10='si'; P15='si'; P16='si'; P17='si'; P18='si'). 
+% TERMINA COINCIDENCIAS PARA SINTOMAS DE COVID
 
-hijos(Persona1,Persona2) :-
-	padre(Persona2,Persona1).
-hijos(Persona1,Persona2) :-
-	madre(Persona2,Persona1).
-
-
-hermanos(Persona1,Persona2) :-
-	padre(Persona3,Persona1),
-	padre(Persona3,Persona2),
-	madre(Persona4,Persona1),
-	madre(Persona4,Persona1),
-	Persona1 \= Persona2.
-
-
-tios(Persona1,Persona2) :-
-	hermanos(Persona1,Persona3),
-	padre(Persona3,Persona2).
-tios(Persona1,Persona2) :-
-	hermanos(Persona1,Persona3),
-	madre(Persona3,Persona2).
-
-
-abuelos(Persona1,Persona2) :-
-	padre(Persona1,Persona3),
-	padre(Persona3,Persona2).
-abuelos(Persona1,Persona2) :-
-	madre(Persona1,Persona3),
-	padre(Persona3,Persona2).
-abuelos(Persona1,Persona2) :-
-	padre(Persona1,Persona3),
-	madre(Persona3,Persona2).
-abuelos(Persona1,Persona2) :-
-	madre(Persona1,Persona3),
-	madre(Persona3,Persona2).
-
-
-sobrinos(Persona1,Persona2) :-
-	hijos(Persona1,Persona3),
-	hermanos(Persona3,Persona2).
-
-	
-primos(Persona1,Persona2) :-
-	tios(Persona3,Persona1),
-	padre(Persona3,Persona2).
-primos(Persona1,Persona2) :-
-	tios(Persona3,Persona1),
-	madre(Persona3,Persona2).	
-
-
-/* usuario (Persona,Saldo) */	
-:- dynamic usuario/2.
-usuario(juan,170).
-usuario(juanelo,530).
-
-/* articulo (articulo,stock,costo) */
-:- dynamic articulo/3.
-articulo(computadora,1,200).
-articulo(usb,100,10).
-articulo(celular,1,200).
-
-/* Crear ordenDeCompra, validar saldo y stock 
-   Actualiza saldo de user y stock de item 
-   Actualiza saldo de user y stock de item  
-      despues de orden de compra*/
-ordenDeCompra(Persona,Articulo,Cantidad):-
-	usuario(Persona,Saldo),
-	articulo(Articulo,CantidadArticulo,CostoArticulo),
-	CantidadArticulo > 0,
-	Cantidad > 0,
-	Cantidad =< CantidadArticulo,
-	Saldo >= CostoArticulo*Cantidad,
-	NuevoSaldo is Saldo-CostoArticulo*Cantidad,
-	NuevoStock is CantidadArticulo-Cantidad,
-	actualizarUsuario(Persona,Saldo,NuevoSaldo),
-	actualizarStock(Articulo,CantidadArticulo,NuevoStock,CostoArticulo).
-
-actualizarUsuario(Nombre,Saldo,NuevoSaldo):-
-	retract(usuario(Nombre,Saldo)),
-	asserta(usuario(Nombre,NuevoSaldo)).
-	
-actualizarStock(Articulo,Stock,NuevoStock,Costo):-
-	retract(articulo(Articulo,Stock,Costo)),
-	asserta(articulo(Articulo,NuevoStock,Costo)).
-	
-
-mylist([red,green,yellow,blue,black]).
-mylist(A).
-
-esprimo(2) :- 
-	write(entro),
-	true,
-	!.
-esprimo(Numero) :-
-	write(Numero),
-	write('\n'),
-	Numero < 2,
-	write(Numero < 2),
-	write('\n'),
-	!,
-	false.
-esprimo(Numero) :-
-	NumAux is Numero - 1,
-	write(NumAux),
-	write('\n'),
-	primoRec(Numero, NumAux).
-
-primoRec(Numero,1) :- true, !.
-primoRec(Numero, NumAux):-
-	Residuo is Numero mod NumAux,
-	write('residuo:'),
-	write(Residuo),write('\n'),
-	Residuo =\= 0,!,
-	write('resultado:'),
-	write(Residuo =\= 0),write('\n'),
-	NuevoNumAux is NumAux - 1,
-	write('nuevo divisor:'),
-	write(NuevoNumAux),write('\n'),
-	primoRec(Numero,NuevoNumAux).
-	
-mcd(Num1, Num2, Num) :-
-	Num1 > 0,
-	Num2 > 0,
-	Num3 is Num1 mod Num2,
-	%write(Num3),
-	mcdRec(Num2, Num3, Num4),
-	Num is Num4.
-
-mcdRec(Num2, 0, Num4) :-
-	Num4 is Num2, !.	
-mcdRec(Num2, Num3, Num4) :-
-	Num5 is Num2 mod Num3,
-	mcdRec(Num3, Num5, Num4).
-	
-	
-	
-	
-	
-	
-	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO NO
+sintomas(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,"No tiene ningun sintoma, sientase tranquilo.") :- 
+	P1='no', P2='no', P3='no', P4='no', P5='no', P6='no', P7='no', P8='no',
+	P9='no', P10='no', P11='no', P12='no', P13='no', P14='no', P15='no', P16='no', P17='no', P18='no'.
+% TODO SI
+sintomas(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,"Usted tiene todo, vaya a internarse.") :- 
+	P1='si', P2='si', P3='si', P4='si', P5='si', P6='si', P7='si', P8='si', P9='si', 
+	P10='si', P11='si', P12='si', P13='si', P14='si', P15='si', P16='si', P17='si', P18='si'.
+% INICIA POR DEFECTO
+sintomas(_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,"Sus síntomas coinciden con varias enfermedades, acuda a su médico.") :- .	

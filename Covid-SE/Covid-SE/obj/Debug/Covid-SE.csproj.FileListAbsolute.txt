@@ -1,8 +1,7 @@
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\bin\Debug\Covid-SE.exe.config
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\bin\Debug\Covid-SE.exe
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\bin\Debug\Covid-SE.pdb
-C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid-SE.csprojAssemblyReference.cache
-C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid_SE.Form1.resources
+C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid_SE.Covid_SE.resources
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid_SE.Properties.Resources.resources
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid-SE.csproj.GenerateResource.cache
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid-SE.csproj.CoreCompileInputs.cache
@@ -10,3 +9,6 @@ C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covi
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid-SE.exe
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid-SE.pdb
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\bin\Debug\SwiPlCs.xml
+C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid-SE.csprojAssemblyReference.cache
+C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid_SE.formInicio.resources
+C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\Debug\Covid_SE.formRes.resources

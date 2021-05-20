@@ -1,4 +1,3 @@
-C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid_SE.Form1.resources
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid_SE.Properties.Resources.resources
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid-SE.csproj.GenerateResource.cache
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid-SE.csproj.CoreCompileInputs.cache
@@ -9,3 +8,6 @@ C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid-SE.csproj.CopyComplete
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid-SE.exe
 C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid-SE.pdb
+C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\bin\x86\Debug\SwiPlCs.dll
+C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\bin\x86\Debug\SwiPlCs.xml
+C:\Users\Skynet\Documents\MEGA\CODE\C#\Covid-SE\Covid-SE\Covid-SE\obj\x86\Debug\Covid_SE.Covid_SE.resources

@@ -52,6 +52,7 @@ namespace Covid_SE
             this.pboxResultado.Location = new System.Drawing.Point(0, 40);
             this.pboxResultado.Name = "pboxResultado";
             this.pboxResultado.Size = new System.Drawing.Size(540, 337);
+            this.pboxResultado.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pboxResultado.TabIndex = 1;
             this.pboxResultado.TabStop = false;
             // 

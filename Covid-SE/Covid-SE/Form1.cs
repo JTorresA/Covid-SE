@@ -58,11 +58,33 @@ namespace Covid_SE
 
             // contiene query con cada valor de los radiobutton
             string mensaje = "";
-            string consulteichion = "sintomas(" + p[0] + "," + p[1] + "," + p[2] + "," 
-                + p[3] + "," + p[4] + "," + p[5] + "," + p[6] + "," + p[7] + "," 
-                + p[8] + "," + p[9] + "," + p[10] + "," + p[11] + "," + p[12] + "," 
-                + p[13] + "," + p[14] + "," + p[15] + "," + p[16] + "," + p[17] + ","
-                + "X)";
+            string consulteichion =
+            //"probarSol('no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no', X,Result)";
+            //"probarSol('si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', 'si', X, Result)";
+            //"probarSol('no',_,'no','no','si',_,'no','no',_,_,_,'no','no','no','no','si','no','no', X,Result)";
+            //"probarSol('no', _, 'no', 'no', 'si', _, 'no', 'no', _, _, _, 'no', 'no', 'no', 'no', 'no', 'si', 'no', X, Result)";
+            //"probarSol('no',_,'no','no','si',_,'no','no',_,_,_,'no','no','no','no','si','si','no', X,Result)";
+
+            //"probarSol('no',_,'si','no','no','no','no','no','no','no','no','no','no','si','no','si','si','si', X,Result)";
+            //"probarSol('no','no','si','no','no','no','no','no','no','no','no','no','no','no','no','si','si','si', X,Result)";
+            //"probarSol('no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','si','si','si', X,Result)";
+
+
+            //"probarSol('si','si','si','si','no','si','no','no','si','si','si','si','si','si','no','si','si','si', X,Result)";
+            //"probarSol('si', 'si', 'no', 'no', 'no', 'si', 'no', 'no', 'si', 'si', 'si', 'si', 'si', 'si', 'no', 'si', 'si', 'si', X, Result)";
+
+            //"probarSol('si','si','si','si','no','si','no','no','si','si','si','si','si','si','no','si','no','no', X,Result)";
+            //"probarSol('si','si','si','si','no','si','no','no','si','si','si','si','si','si','no','si','si','si', X,Result)";
+
+            //"probarSol('no', 'si', 'si', 'no', 'no', 'no', 'no', 'no', _, _, _, 'no', 'no', 'no', 'no', 'si', 'si', 'si', X, Result)";
+
+
+            //"probarSol('no', 'no', 'si', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'si', 'si', 'si', X, Result)";
+            "probarSol(" + p[0] + "," + p[1] + "," + p[2] + "," 
+            + p[3] + "," + p[4] + "," + p[5] + "," + p[6] + "," + p[7] + "," 
+            + p[8] + "," + p[9] + "," + p[10] + "," + p[11] + "," + p[12] + "," 
+            + p[13] + "," + p[14] + "," + p[15] + "," + p[16] + "," + p[17] + ","
+            + "X, Result)";
 
             // Realiza consutla a Prolog.
             PlQuery consulta = new PlQuery(consulteichion);
@@ -92,7 +114,11 @@ namespace Covid_SE
             string salida = "";
             foreach (PlQueryVariables z in consulta.SolutionVariables)
             {
-                salida = z["X"].ToString();
+                salida = z["Result"].ToString();
+                if (salida.Equals("[]"))
+                {
+                    salida = "Sus síntomas coinciden con varias enfermedades, acuda a su médico.";
+                }
 
                 salida = salida.Replace("[", "");
                 salida = salida.Replace("]", "");
@@ -101,6 +127,7 @@ namespace Covid_SE
                 string[] words = salida.Split(',');
                 salida = "";
 
+
                 foreach (var word in words)
                 {
                     salida += ((char)(Convert.ToInt32(word))).ToString();
@@ -108,7 +135,61 @@ namespace Covid_SE
                     //char character = (char)unicode;
                     //enfer += character.ToString();
                 }
+                if (salida.Contains("No tiene ningun sintoma, sientase tranquilo."))
+                {
+                    salida = "No tiene ningun sintoma, sientase tranquilo.";
+                    return salida;
+                }
+                else if (salida.Equals("Usted tiene todo, vaya a internarse."))
+                {
+                    return salida;
+                }
+                int[] veces = new int[4];
+                string[] words2 = salida.Split('.');
+                for (int i = 0; i < words2.Length; i++)
+                {
+                    if (words2[i].Equals("Alergias"))
+                    {
+                        veces[0]++;
+                    }
+                    else if (words2[i].Equals("Resfriado"))
+                    {
+                        veces[1]++;
+                    }
+                    else if (words2[i].Equals("Influenza"))
+                    {
+                        veces[2]++;
+                    }
+                    else if (words2[i].Equals("Covid-19"))
+                    {
+                        veces[3]++;
+                    }
+                }
+                salida = "";
+                int maxValue = veces.Max();
+                int maxIndex = veces.ToList().IndexOf(maxValue);
+                switch (maxIndex)
+                {
+                    case 0:
+                        salida = "Alergias";
+                        break;
+                    case 1:
+                        salida = "Resfriado";
+                        break;
+                    case 2:
+                        salida = "Influenza";
+                        break;
+                    case 3:
+                        salida = "Covid-19";
+                        break;
+                    default:
+                        break;
+                }
+
+                //salida = z["Result"].ToString();
+
             }
+            
             return salida;
         }
 
